@@ -25,7 +25,7 @@
 ## 附：Go+ Builder 向导系统项目简介
 Go+ Builder 为创作者而生! 它不仅仅是一个游戏编辑器，更是一个旨在帮助用户提升计算思维和系统设计能力的教育工具。通过 Go+ builder，用户可以直观地理解和构建复杂系统，培养解决问题的能力。
 
-基于 Go+ Builder 的发展现状，本期实训同学们将实现 Go+ Builder 的引导系统，降低用户的使用门槛与学习成本，可能的手段包括但不限于：UI 引导、交互式教程、使用文档、帮助机器人等。
+基于 Go+ Builder 的发展现状，本期实训同学们将实现 Go+ Builder 的向导系统，降低用户的使用门槛与学习成本，可能的手段包括但不限于：UI 引导、交互式教程、使用文档、帮助机器人等。
 * Go+ Builder Github Repo: https://github.com/goplus/builder
 * Go+ Builder 线上环境: https://builder.goplus.org
 
