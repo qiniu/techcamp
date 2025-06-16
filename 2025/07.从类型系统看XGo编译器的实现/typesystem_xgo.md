@@ -11,7 +11,7 @@ XGo 语言类型系统设计与 Go 语言类似，融合了静态类型系统，
 XGo 编译器从宏观上可分为两层，一层是 XGo 语言的编译器，负责 XGo 源码到 Go 源码的转换；
 一层是 Go 语言的编译器，负责 Go 源码的编译，可以使用 Go 语言官方编译器，LLGo 编译器，TinyGo 编译器，iXGo 解释器。
 
-本文重点关注是 XGo 语言编译器，从编译时类型系统角度来理解 XGo 编译器的实现。`
+本文重点关注的是 XGo 语言编译器，从编译时类型系统角度来理解 XGo 编译器的实现。
 
 ### XGo 语言编译器执行流程
 
@@ -38,7 +38,7 @@ XGo 编译器通过 `gogen` 将 XGo AST 转换为 Go AST，同时检查语义是
 
 ### XGo 编译器类型系统
 
-XGo 源码能够可以转换为 Go 源码，本质原因在于 XGo 的类型系统与 Go 类型系统完全兼容，这样将 XGo AST 转换为 Go AST 时，语义能够保持一致性。
+XGo 源码能够转换为 Go 源码，本质原因在于 XGo 的类型系统与 Go 类型系统完全兼容，这样将 XGo AST 转换为 Go AST 时，语义能够保持一致性。
 也正是由于类型完全兼容，所以 Go 源码也能够转换为 XGo 样式的源码，语义保持不变。
 
 - XGo 类型系统
@@ -54,7 +54,7 @@ float32 float64
 complex64 complex128
 unsafe.Pointer
 ```
-复合类型:
+复合类型：
 ```
 array chan func interface map pointer slice string struct
 ```
@@ -79,7 +79,7 @@ var (
 等价于
 ```
 // point.go
-struct Point {
+type Point struct {
 	x int
 	y int
 }
@@ -99,12 +99,12 @@ XGo 相比 Go 具有更加灵活的表达式类型推导能力，通过静态类
 
 `[1, "XGo"]` => `[]any{1, "XGo"}`
 
-也通过 List 中的变量类型推导 List 类型
+也可通过 List 中的变量类型推导 List 类型
 
 ```
 var i int
 echo type([i])
-// Output: []int{i}
+// Output: []int
 ```
 
 - Map Literals（映射字面量）
@@ -148,7 +148,7 @@ echo x, type(x)
 
 在 XGo 中 Lambda 表达式的使用能够简化代码，XGo 编译器根据函数原始定义来推导 Lambda 表达式中的类型。
 
-对于下面这个例子中 `transform([1, 2, 3], x => x*x)` 根据 transform 函数定义进行推导，可推导出 `[1, 2, 3]` 类型为 `[]float64`，推导出 `x` 的类型为 float64，这样这行代码将转换为 Go 语言的 `transform([]float64{1, 2, 3}, func(x float64) { return x*x })`。
+对于下面这个例子中 `transform([1, 2, 3], x => x*x)` 根据 transform 函数定义进行推导，可推导出 `[1, 2, 3]` 类型为 `[]float64`，推导出 `x` 的类型为 float64，这样这行代码将转换为 Go 语言的 `transform([]float64{1, 2, 3}, func(x float64) float64 { return x*x })`。
 
 ```
 func transform(a []float64, f func(float64) float64) []float64 {
@@ -169,9 +169,22 @@ echo transform([-3, 1, -5], x => {
 
 如果将 XGo 的 Lambda 表达式与 Go 语言的泛型函数组合可以实现更强的语法表达能力。（_注：XGo 本身不支持泛型定义，但可以引用 Go 语言泛型定义。_）
 
-对于下面这个例子中 `transform([1, 2, 3], x => x*x)` 因为 `transform[T]` 为泛型函数，无法确定 `T` 的类型，所以会产生多轮推导，所以第一轮推导首先推导参数 `[1, 2, 3]` 的类型为 `[]int`，忽略 lambda 表达式类型，之后依据`transform[T]`函数的第一个参数为 `[]int` 对泛型函数 `transform[T]`的泛型参数类型进行推断，确定 `T` 的类型为 `int`，之后对 `transform[T]` 进行实例化为 `transform[int]`。实例化后进行第二轮推导，在本轮中根据 `transform[int]` 的第二个参数类型 `func(int) int` 可推断 lambda 表达式 `x => x*x` 中的 `x` 类型为 `int`。最终这行代码将转换为 Go 语言的 `transform[int]([]int{1, 2, 3}, func(x int) { return x*x })`。
+下面这个例子中 `transform[T]` 是由 `transform.go` 定义的一个泛型函数， `main.xgo` 中的 `transform([1, 2, 3], x => x*x)` 语句是在泛型函数中使用 Lambda 表达式， 由于 `transform[T]` 没有参数实例化，无法确定泛型参数 `T` 的类型，所以这里会对 `transform` 函数和参数产生多轮推导，在第一轮推导中，首先推导第一个参数 `[1, 2, 3]` 的类型为 `[]int`，忽略第二个参数 lambda 表达式类型，之后依据`transform[T]`函数的第一个参数为 `[]int` 对泛型函数 `transform[T]`的泛型参数类型进行推断，推断 `T` 的类型为 `int`，之后可以对 `transform[T]` 进行实例化为 `transform[int]`。实例化后进行第二轮推导，在本轮中根据 `transform[int]` 的第二个参数类型 `func(int) int` 可推断 lambda 表达式 `x => x*x` 中的 `x` 类型为 `int`。最终这行代码被转换为 Go 语言的 `transform[int]([]int{1, 2, 3}, func(x int) int { return x*x })`。
 
 ```
+-- transform.go --
+package main
+
+func transform[T any](a []T, f func(T) T) ([]T) {
+	out := make([]T, len(a))
+	for i, x := range a {
+		out[i] = f(x)
+	}
+	return out
+}
+
+-- main.xgo --
+
 echo transform([1, 2, 3], x => x*x)
 // Output: [1 4 9]
 
@@ -182,16 +195,6 @@ echo transform([-3, 1, -5], x => {
     return x
 })
 // Output: [3 1 5]
--- trans.go --
-package main
-
-func transform[T any](a []T, f func(T) T) ([]T) {
-	out := make([]T, len(a))
-	for i, x := range a {
-		out[i] = f(x)
-	}
-	return out
-}
 ```
 
 类似上面这种带有多个参数的复杂函数进行调用时可能会进行多轮推断，如对于泛型函数的参数需要进行参数推断和实例化处理。
@@ -205,9 +208,7 @@ XGo 通过其精心设计的编译时类型系统和表达式类型推导机制�
 还保障了从 XGo AST 到 Go AST 转换过程中语义的准确无误。
 同时，其类型推导机制在保持类型安全的前提下，简化了语法，提升了开发效率。
 
-如果你对 XGo 的类型系统实现细节感兴趣，欢迎深入查阅其源码仓库，探索更多技术细节。
+如果你对 XGo 的类型系统实现细节感兴趣，欢迎深入查阅其源码仓库 [https://github.com/goplus/xgo](https://github.com/goplus/xgo)，探索更多技术细节。
 对于类型系统的设计权衡，你认为在静态类型和动态类型之间，是否存在一种更优的融合方式？
-或者在性能与表达力之间，XGo 的类型系统还有哪些可以优化的空间？
+在性能与表达力之间，XGo 的类型系统还有哪些可以优化的空间？
 我们期待你的留言和探讨，共同推动编程语言技术的发展。
-
-
