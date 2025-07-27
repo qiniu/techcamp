@@ -20,6 +20,10 @@
 2. 根据（1）提供的能力，设计 UI
 3. Agent 与 XBuilder 的结合方式，推荐插件（需设计 XBuilder 插件引擎）
 
+## 课程
+
+- XBuilder 项目的代码结构
+
 ## 相关资料
 
 - 常用 AI Agent

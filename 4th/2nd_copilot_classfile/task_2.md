@@ -22,6 +22,10 @@
 2. 团队产出一个完整的 Classfile
 3. AI Code Agent 调研报告
 
+## 课程
+
+- XGo 全貌 + classfile 原理机制
+
 ## 相关资料
 
 - [OpenAi API](https://platform.openai.com/docs/api-reference/chat/create)
