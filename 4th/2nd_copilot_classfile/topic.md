@@ -12,6 +12,11 @@
 - [第2次任务](./task_2.md)
 - [第3次任务](./task_3.md)
 
+### 产出物
+
+- [第1次任务产出物](./result_1.md)
+- [第2次任务产出物](./result_2.md)
+
 ### 相关信息
 
 * XBuilder 国内站点：https://x.qiniu.com/
