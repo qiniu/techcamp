@@ -9,7 +9,7 @@
   - [jiangyuzhou](https://x.qiniu.com/project/wx_user_wzFKQVUA/CollectFlower)
   - [shenpengfei](https://x.qiniu.com/project/wx_user_aCa8_bSs/FingerDance)
   - [jiboyang](https://x.qiniu.com/project/wx_user_nw87oAjA/MusicGame)
-  - [linjianchi]()
+  - [linjianchi](https://x.qiniu.com/project/wx_user_c99TWcxA/flyshoot)
 
 ## 团队产出物
 
