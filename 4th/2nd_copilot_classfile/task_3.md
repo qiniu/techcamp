@@ -6,9 +6,9 @@
 
 ## 任务概述
 
-- 根据调研报告：筛选 AI Agent 应该具备哪些能力
-- 结合 XBuilder：产出 Agent 对外提供的服务形式（插件）
-- UI 设计
+- 多模态模型：绘图模型调研
+- Scratch 画板功能调研，开源画板调研
+- 画板 MCP 定义
 
 ## 个人任务
 
@@ -16,28 +16,18 @@
 
 ## 团队任务
 
-1. 先确认 AI Agent 应该具备哪些能力
-2. 根据（1）提供的能力，设计 UI
-3. Agent 与 XBuilder 的结合方式，推荐插件（需设计 XBuilder 插件引擎）
-
-## 课程
-
-- XBuilder 项目的代码结构
+1. 多模态模型：绘图模型调研
+2. Scratch 画板功能调研，开源画板调研
+3. 画板 MCP 定义
 
 ## 相关资料
 
-- 常用 AI Agent
-  - [cursor](https://cursor.com/cn/agents)
-  - [claude code](https://docs.anthropic.com/en/docs/claude-code/overview)
-  - [gemini-cli](https://github.com/google-gemini/gemini-cli/blob/main/docs/index.md)
-  - [windsurf](https://windsurf.com/editor)
-  - [vscode-copilot](https://github.com/features/copilot)
-  - [vscode-cline](https://github.com/cline/cline)
-- [Vscode 插件](https://code.visualstudio.com/api/extension-guides/overview)
+- 多模态 AI Model
+  - [即梦](https://jimeng.jianying.com/ai-tool/home/?utm_medium=baiduads&utm_source=pinzhuan&utm_campaign=button)
+- [Scratch](https://scratch.mit.edu/)
 
 ## 预期成果
 
-- 学生产出物：AI Agent 能力筛选报告
-- 学生产出物：UI 设计
-- 学生产出物：XBuilder 插件引擎设计
+- 学生产出物：多模态 AI Model 调研报告
+- 学生产出物：XBuilder 画图引擎设计
 - 学生产出物：完整的 产品设计文档
