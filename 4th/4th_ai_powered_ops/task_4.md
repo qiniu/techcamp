@@ -22,8 +22,6 @@
 
 ## 相关资料
 
-- Mock 环境 Trace 框架：OpenTelemetry
-
 ## 预期成果
 
 - 异常指标识别、根因分析模块 Tools 架构设计文档
