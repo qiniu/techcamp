@@ -10,7 +10,7 @@
 - 异常指标识别、根因分析模块
   - 开始架构设计，定义数据处理流程和 API，识别算法 demo 实现
 - Mock 环境架构设计与基本搭建
-  - 开始架构设计，明确 Mock 场景实现框架、Mock 流程处理调用链路，产出 Prometheus/Trace 数据
+  - 开始架构设计，明确 Mock 场景实现框架、Mock 流程处理调用链路，产出 Prometheus/Trace/Log 数据
 - Agent 设计与搭建
   - 开始架构设计，定义数据处理流程和 API，Agent demo 搭建
 
@@ -21,6 +21,10 @@
 3. 异常指标识别、根因分析模块 MultiAgent 设计与搭建
 
 ## 相关资料
+
+- Mock 环境 Trace 框架：OpenTelemetry
+- Mock 环境指标采集框架：Prometheus+NodeExporter+RedisExporter+MongodbExporter
+- Mock 环境日志采集框架: Zerolog+Logstash(Filebeat)+Elasticsearch+Superset
 
 ## 预期成果
 
