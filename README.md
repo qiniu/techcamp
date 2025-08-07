@@ -58,6 +58,12 @@
 
 - **课程指导**: [定方向](proposal/课程指导-定方向.md)
 
+### 📖 学习资料
+
+#### Git
+
+- 可视化学习 Git Branch/Commit: https://learngitbranching.js.org/?locale=zh_CN
+
 ## 🤝 参与贡献
 
 我们欢迎所有形式的贡献！无论是：
