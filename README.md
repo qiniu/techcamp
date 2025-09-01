@@ -2,7 +2,7 @@
 
 > 携手成长，成就优秀工程师
 
-[![License](https://img.shields.io/badge/license-Apache-2.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)]()
 
 ## 📖 项目简介
