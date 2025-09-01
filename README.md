@@ -2,7 +2,7 @@
 
 > 携手成长，成就优秀工程师
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-Apache-2.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/status-active-brightgreen.svg)]()
 
 ## 📖 项目简介
@@ -39,16 +39,24 @@
 | 07   | 从类型系统看 XGo 编译器的实现                | [📖 阅读](2025/07.从类型系统看XGo编译器的实现/typesystem_xgo.md)                            |
 | 08   | AI 辅助开发新范式：1024 实训营带你探索未来   | [📖 阅读](2025/08.%20AI辅助开发新范式：1024实训营带你探索未来/AI-assisted-dev.md)           |
 | 09   | 许式伟聊 AI 时代下的工程师发展观             | [📖 阅读](2025/09.%20许式伟聊AI时代下的工程师发展观/content.md)                             |
-| 10   | 许式伟发布 XGo 全景图：AI 时代的全民编程语言 | [📖 阅读](2025/10.%20xgo发布/content.md)                                                    |
+| 10   | 许式伟发布 XGo 全景图：AI 时代的全民编程语言 | [📖 阅读](2025/10.%20xgo发布/content.md) |
+| 11   | GitHub PR 合并三选一：主分支该怎么选？ | [📖 阅读](2025/11.%20GitHub%20PR%20合并三选一：主分支该怎么选？/github-pr-merge.md) |
 
 ### 🎓 第 4 期训练营
 
+#### 实训课题
 | 模块    | 主题                                    | 内容                                          |
 | ------- | --------------------------------------- | --------------------------------------------- |
-| 第 1 期 | XBuilder 项目分享与传播                 | [📖 阅读](4th/1st_xbuilder_share/topic.md)    |
-| 第 2 期 | XBuilder 基于大模型的代码生成与素材生成 | [📖 阅读](4th/2nd_copilot_classfile/topic.md) |
-| 第 3 期 | LLGo 对 Python 库开箱即用               | [📖 阅读](4th/3rd_llgo_python/topic.md)       |
-| 第 4 期 | AI Powered Ops                          | [📖 阅读](4th/4th_ai_powered_ops/topic.md)    |
+| 第 1 组 | XBuilder 项目分享与传播                 | [📖 阅读](4th/1st_xbuilder_share/topic.md)    |
+| 第 2 组 | XBuilder 基于大模型的代码生成与素材生成 | [📖 阅读](4th/2nd_copilot_classfile/topic.md) |
+| 第 3 组 | LLGo 对 Python 库开箱即用               | [📖 阅读](4th/3rd_llgo_python/topic.md)       |
+| 第 4 组 | AI Powered Ops                          | [📖 阅读](4th/4th_ai_powered_ops/topic.md)    |
+
+#### 实训公开课
+| 期数    | 主题                                    | 内容                     |
+| ------- | --------------------------------------- | ---------------------------------- |
+| 第 1 期 | 《人人都是产品经理》作者苏杰：AI 教我的产品哲学 | [📖 观看](https://mp.weixin.qq.com/s/qGQBKs3bjDZzk-SKdNumBw) |
+
 
 ### 📋 实训营规范
 
@@ -77,7 +85,7 @@
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+本项目采用 Apache-2.0 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
 
 ---
 
