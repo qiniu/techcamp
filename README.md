@@ -53,6 +53,8 @@
 ### 📋 实训营规范
 
 - **任务发布规范**: [如何发布任务](communitee/01.how-to-release-tasks.md)
+- **产品方向指导**: [定产品方向指导规范](communitee/02.product-direction-template.md)
+- **日报写作规范**: [如何写高质量日报](communitee/03.how-to-write-quality-daily-report.md)
 
 ### 💡 提案与建议
 
