@@ -24,7 +24,7 @@ LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR
 ### 构建包：识别依赖、归一化链接、标记是否需要 Python 初始化
 
 - 统一遍历待构建的包，按“包类别”决定如何处理：
-```418:424:llgo/internal/build/build.go
+```go
 		switch kind, param := cl.PkgKindOf(pkg.Types); kind {
 		case cl.PkgDeclOnly:
 			pkg.ExportFile = ""
@@ -138,7 +138,7 @@ func BuildOnefileBinary(exe string, out string) error {
   - 外部库都走 `link: ...` 归一化为 `-L/-l/...`。
 - 不同：
   - 运行期需求：C/C++ 无需“启动运行时”；Python 必须初始化解释器（设置 PYTHONHOME + 初始化调用）。
-  - 环境准备：C/C++ 通常只要系统已有库即可；Python 需预置独立环境、修 install_name（macOS）、并在链接期注入 rpath。
+  - 环境准备：C/C++ 通常只要系统已有库即可；Python 需预置独立环境、修改 install_name（macOS）、并在链接期注入 rpath。
   - 额外对象：Python 会生成“初始化桥接 .o”；C/C++ 无需此步。
 
 ## 一眼看懂的调用顺序
@@ -164,3 +164,6 @@ func BuildOnefileBinary(exe string, out string) error {
 - 本质差异：C/C++ 无需“启动运行时”；Python 需在启动早期设置 PYTHONHOME 并初始化解释器。
 
 - 结果与价值：实现“可编译、可链接、可运行、可分发、可复现”，以最小侵入把 Python 能力工程化纳入 Go 应用交付链路。
+
+
+
