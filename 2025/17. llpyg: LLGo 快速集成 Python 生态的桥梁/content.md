@@ -20,8 +20,6 @@
 - 支持解析可选参数、默认参数、位置参数、关键字参数等；
 - 通过签名中的 `/` 和 `*` 等符号，对参数进行分组；
 
-
-
 ### 代码生成
 
 在代码生成方面，llpyg：
@@ -45,9 +43,12 @@ graph TD
 整体流程如下：
 1. 执行 `pyenv`，设置 Python 路径，对环境进行检查；
 2. 执行 `pymodule`，获取 Python 库的多级模块名，生成配置文件；
-3. 执行 `pydump`，获取 Python 库的符号信息，包括函数、类等信息；
-4. 执行 `pysig`，解析 Python 函数和方法签名；
-5. 根据符号和签名信息使用 gogen 生成 LLGo Bindings 代码；
+3. 逐模块执行 `pygen`，生成 LLGo Bindings 代码;
+
+`pygen` 具体流程如下：
+1. 执行 `pydump`，获取 Python 库的符号信息，包括函数、类等信息；
+2. 执行 `pysig`，解析 Python 函数和方法签名；
+3. 根据符号和签名信息使用工具 `gogen` 生成 Go 代码；
 
 
 ## 符号映射
@@ -128,7 +129,7 @@ llpyg llpyg.cfg
 ### 输出结果
 
 llpyg 会将生成的代码组织为一个 Go Module，结构如下：
-```go
+```text
 numpy
 ├── numpy.go    // 主模块 LLGo Bindings 文件
 ├── random
@@ -152,15 +153,21 @@ func Add(x1 *py.Object, x2 *py.Object) *py.Object
 用户可以像使用 Go 函数一样使用 Python 函数：
 ```go
 import (
-  "github.com/goplus/lib/py"
-  "github.com/goplus/llpyg/numpy"
+	"github.com/goplus/lib/py"
+	"github.com/goplus/lib/py/std"
+	"github.com/goplus/llpyg/numpy"
 )
 
 func main() {
-  a := py.List(1, 2, 3)
-  b := py.List(4, 5, 6)
+	a := py.List(1, 2, 3)
+	b := py.List(4, 5, 6)
 	res := numpy.Add(a, b)
+	std.Print(py.Str("a+b ="), res)
 }
+```
+输出：
+```text
+a+b = [5 7 9]
 ```
 
 ## 未来发展
