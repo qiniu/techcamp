@@ -18,7 +18,7 @@ LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR
 		return dedup.Check(llssa.PkgPython).Types
 	})
 ```
-- 为什么不需要“C 的提供者”？
+- 为什么不需要“C 的编译容器”？
   - C/C++ 的函数类型/符号在 cgo 与编译/链接期已给出，不需要像 Python 一样在 SSA 层动态提供类型信息。
 
 ### 构建包：识别依赖、归一化链接、标记是否需要 Python 初始化
@@ -88,7 +88,7 @@ LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR
 		addRpath(&linkArgs, "@executable_path/python/lib")
 		addRpath(&linkArgs, "@executable_path/lib/python/lib")
 ```
-- 最终链接（统一交给 clang/或交叉链接器），把以上对象与参数合并为可执行文件：
+- 最终链接（统一交给 clang/交叉链接器），把以上对象与参数合并为可执行文件：
 ```go
 	buildArgs := []string{"-o", app}
 	buildArgs = append(buildArgs, linkArgs...)
