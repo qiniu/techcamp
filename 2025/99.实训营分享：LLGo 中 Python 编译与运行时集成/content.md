@@ -67,7 +67,7 @@ LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR
 		pyEnvInitDecl = "declare void @__llgo_py_init_from_exedir()"
 	}
 ```
-- 生成“初始化桥接 .o”（C 源即时编译）：它会从可执行文件相对位置推导 PYTHONHOME，并完成解释器初始化，与入口 IR 的调用对接。
+- 生成“Python 初始化.o”（C 源即时编译）：它会从可执行文件相对位置推导 PYTHONHOME，并完成解释器初始化，入口 IR `__llgo_py_init_from_exedir` 会调用这个 `.o` 文件。
 ```go
 	out := tmp.Name() + ".o"
 	args := []string{
