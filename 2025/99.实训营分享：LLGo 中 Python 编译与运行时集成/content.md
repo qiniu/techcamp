@@ -99,7 +99,7 @@ LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR
 	return cmd.Link(buildArgs...)
 ```
 
-## 可选打包（Bundle）：让用户“拿来就跑”
+## 可选打包（Bundle）：让用户“开箱即用”
 想让用户机器“无需安装/配置 Python”，可以把 Python 打进发布物里，两种形态：
 
 - dir（目录式）：把 libpython 和标准库复制到可执行文件旁固定层级，并在 macOS 下设置 install_name 为 @rpath：
