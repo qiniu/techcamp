@@ -34,7 +34,7 @@ LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR
 			// 常规包
 ```
 - 与 Python 直接相关的两类：
-  - 外链库（link: ...）：当参数内出现 `$(pkg-config --libs python3-embed)`，先“准备一套可用的 Python 工具链”，再展开成 `-lpythonX -L...` 等链接参数。
+  - 外链库（link: ...）：当参数内出现 `$(pkg-config --libs python3-embed)`，先准备一套可用的 Python 工具链，再展开成 `-lpythonX -L...` 等链接参数。
   - Python 模块（py.<module>）：缺失则在“独立 Python 环境”内用 pip 安装，不污染系统。
 
 关键实现（展开 pkg-config 前的“Python 预构建”四步）：
@@ -44,7 +44,7 @@ LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR
 {"verify Python", pyenv.Verify},
 {"fix install_name", func() error { return pyenv.FixLibpythonInstallName(pyHome) }},
 ```
-- EnsureWithFetch：下载独立发行版到缓存（standalone，不侵入用户系统）。
+- EnsureWithFetch：下载`python-build-standalone`独立发行版到缓存, 不侵入用户系统。
 - EnsureBuildEnv：注入 PATH、PYTHONHOME、PKG_CONFIG_PATH 等，使 pkg-config 可正确解析头/库路径。
 - Verify：快速跑解释器以确认可用。
 - FixLibpythonInstallName（macOS）：把 libpython 的 install_name 调整为 @rpath/...，便于后续按 rpath 定位。
