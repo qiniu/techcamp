@@ -2,7 +2,7 @@
 
 ## 前言
 
-LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR 构建与 C/C++/Python 生态融合在一起，从“能否编到一起”到“如何舒服地用起来”，中间隔着一整套构建、版本、分发与运行时的工程系统。本文以“LLGo 中与 Python 相关的编译流程”为主线，串联 C/C++ 与 Python 的关键差异与共同点，并结合 `bundle` 能力说明如何把 Python 一起打包，做到“拿来就跑”。
+LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR 构建与 C/C++/Python 生态融合在一起，从“能否编到一起”到“如何舒服地用起来”，中间隔着一整套构建、版本、分发与运行时的工程系统。但目前 LLGo 在 Python 能力中仍存在不足，即对用户 Python 环境的强依赖。为解决这个问题，本文展示了一种用户不可见的 Python 环境构建方案，以“LLGo 中与 Python 相关的编译流程”为主线，串联 C/C++ 与 Python 的关键差异与共同点，并结合 `bundle` 能力说明如何把 Python 一起打包，做到“拿来就跑”。
 
 ## LLGo 中与 Python 相关的编译流程解析
 
@@ -10,14 +10,11 @@ LLGo 是一款基于 LLVM 的 Go 编译器，它把 Go 的类型系统和 SSA/IR
 
 - 入口函数负责建立 SSA/IR 编译容器，并懒加载运行时与 Python 符号包：
 ```go
-	prog.SetRuntime(func() *types.Package {
-		noRt = 0
-		return altPkgs[0].Types
-	})
 	prog.SetPython(func() *types.Package {
 		return dedup.Check(llssa.PkgPython).Types
 	})
 ```
+这是 LLGo 中已实现的语言编译容器，此处不做赘述。
 
 ### 构建包：识别依赖、归一化链接、标记是否需要 Python 初始化
 
@@ -132,7 +129,7 @@ func PipInstall(spec string) error {
 		addRpath(&linkArgs, "@executable_path/python/lib")
 		addRpath(&linkArgs, "@executable_path/lib/python/lib")
 ```
-- 最终链接（统一交给 clang/交叉链接器），把根据链接参数，将以上对象合并为可执行文件：
+- 最终链接（统一交给 clang/交叉链接器），把根据链接参数，将以上对象构建为可执行文件：
 ```go
 	buildArgs := []string{"-o", app}
 	buildArgs = append(buildArgs, linkArgs...)
