@@ -101,7 +101,7 @@ func PipInstall(spec string) error {
 			if !needPyInit   { needPyInit = need2 }
 		}
 ```
-- 生成主入口 IR：按需声明并调用 Python 初始化符号（入口早期执行），然后导出为一个 .o 参与最终链接：
+- 生成主入口初始化函数，并在 IR 中嵌入：按需声明并调用 Python 初始化符号（入口早期执行），然后导出为一个 .o 参与最终链接：
 ```go
 	if needPyInit {
 		pyEnvInit = "call void @__llgo_py_init_from_exedir()"
@@ -175,16 +175,6 @@ Cmd.Flag.StringVar(&archiveOut, "archiveOut", "", "archive output path (default:
   - 环境准备：C/C++ 通常只要系统已有库即可；Python 需预置独立环境、修改 install_name（macOS）、并在链接期注入 rpath。
   - 额外对象：Python 会生成“初始化桥接 .o”；C/C++ 无需此步。
 
-## 一眼看懂的调用顺序
-- Do
-- buildAllPkgs（初始包集）
-- buildPkg（每包：NewPackageEx → buildCgo/LLGoFiles → exportObject）
-- buildAllPkgs（替代包/补丁）
-- createGlobals（如有）
-- linkMainPkg
-  - 收集对象/链接参数 → 生成主入口 .o（含 Python 初始化声明/调用） → 如需再生成 Python 初始化桥接 .o → 追加 rpath → 最终链接
-- 运行/测试（按模式）
-
 ## 总结
 
 - 识别与分类：通过 link: ... 与 py.<module> 判定 Python 依赖，触发专属流程；C/C++ 仅归一化为 -L/-l 无需额外运行时。
@@ -198,6 +188,4 @@ Cmd.Flag.StringVar(&archiveOut, "archiveOut", "", "archive output path (default:
 - 本质差异：C/C++ 无需“启动运行时”；Python 需在启动早期设置 PYTHONHOME 并初始化解释器。
 
 - 结果与价值：实现“可编译、可链接、可运行、可分发、可复现”，以最小侵入把 Python 能力工程化纳入 Go 应用交付链路。
-
-
 
