@@ -56,9 +56,15 @@ graph TD
 在 llpyg 中，我们使用通用类型 `py.Object` 来表示 Python 对象。每一个 Python 对象都可以被映射为 `py.Object` 类型。
 ```go
 type Object struct {
-	Unused [8]byte
+	Unused [0]byte
 }
 ```
+对于 Python 模块中定义的全局函数，我们使用包级别的函数来进行映射，传入参数类型统一为 `*py.Object`。
+```go
+//go:linkname Add py.add
+func Add(x1 *py.Object, x2 *py.Object) *py.Object
+```
+
 为了提供对于 Python 类的支持，我们使用结构体来表示 Python 类，通过结构体嵌入实现类似继承的效果：
 ```go
 type Animal struct {
@@ -69,19 +75,19 @@ type Dog struct {
 	Animal
 }
 ```
-针对每一个 Python 类，我们提供了一个构造函数 `New[ClassName]` 用于创建实例：
+针对每一个 Python 类，我们提供了一个包级别的构造函数 `New[ClassName]` 用于创建实例：
 ```go
 //go:linkname NewAnimal py.Animal
 func NewAnimal(name *py.Object) *Animal
 ```
-对于类方法和实例方法，我们使用结构体方法来表示：
+对于实例方法，我们将其转为结构体方法：
 ```go
 //llgo:link (*Dog).Run py.Dog.run
 func (*Dog) Run() *py.Object {
 	return nil
 }
 ```
-对于类实例中存在的属性，我们将其拆分为了 `get` 和 `set` 方法：
+对于类实例中存在的 property 属性，我们将其拆分为了 `get` 和 `set` 方法：
 ```go
 //llgo:link (*Dog).Age py.Dog.age.__get__
 func (*Dog) Age() *py.Object {
@@ -92,6 +98,7 @@ func (*Dog) Age() *py.Object {
 func (*Dog) SetAge(age *py.Object) {
 }
 ```
+
 
 ## 运行示例
 
@@ -107,7 +114,7 @@ llpyg numpy
 - `-mod`: 为生成的 LLGo Bindings 初始化为 Go Module
 - `-d`: 期望转换的 Python 库的模块的最大深度
 
-用户还可以通过配置文件的方式来生成 LLGo Bindings 代码：
+用户还可以通过编写配置文件的方式来生成 LLGo Bindings 代码：
 ```bash
 llpyg llpyg.cfg
 ```
