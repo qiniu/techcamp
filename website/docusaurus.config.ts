@@ -26,6 +26,7 @@ const config: Config = {
   projectName: 'techcamp', // Usually your repo name.
 
   onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -54,7 +55,7 @@ const config: Config = {
           blogDescription: '1024 实训营技术分享与实践经验',
           postsPerPage: 10,
           blogSidebarTitle: '最新文章',
-          blogSidebarCount: 'ALL',
+          blogSidebarCount: 10,
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',

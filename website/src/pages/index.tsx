@@ -25,8 +25,7 @@ function HomepageHeader() {
           </Link>
           <Link
             className="button button--primary button--lg"
-            to="/blog"
-            style={{marginLeft: '1rem'}}>
+            to="/blog">
             技术博客 📖
           </Link>
         </div>

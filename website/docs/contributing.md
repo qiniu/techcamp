@@ -12,8 +12,15 @@ sidebar_position: 2
 
 分享你的技术文章和实践经验：
 
+**贡献到网站博客：**
 1. Fork 本仓库
-2. 在 `2025/` 目录下创建你的文章目录
+2. 在 `website/blog/` 目录下创建新的 Markdown 文件
+3. 按照 Docusaurus 博客格式编写文章（参考现有文章）
+4. 提交 Pull Request
+
+**贡献技术分享文章：**
+1. Fork 本仓库
+2. 在仓库根目录的 `2025/` 目录下创建你的文章目录
 3. 编写 Markdown 格式的技术文章
 4. 提交 Pull Request
 
