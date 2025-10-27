@@ -24,3 +24,10 @@ go.work.sum
 # env file
 .env
 .qodo
+
+# Website (Docusaurus)
+website/node_modules/
+website/.docusaurus/
+website/.cache-loader/
+website/build/
+website/.DS_Store
