@@ -185,14 +185,14 @@ Cmd.Flag.StringVar(&archiveOut, "archiveOut", "", "archive output path (default:
 
 ## 总结
 
-**1.识别与分类**：通过 link: ... 与 py.<module> 判定 Python 依赖，触发专属流程；C/C++ 仅归一化为 -L/-l 无需额外运行时。
+**1.识别与分类**：通过 `link: ...` 与 `py.<module>` 判定 Python 依赖，触发专属流程；C/C++ 仅归一化为 -L/-l 无需额外运行时。
 
-**2.预构建环境**：在展开 $(pkg-config --libs python3-embed) 前完成 EnsureWithFetch、EnsureBuildEnv、Verify、FixLibpythonInstallName，保证可解析、可链接、可运行且不侵入系统。
+**2.预构建环境**：在展开 `$(pkg-config --libs python3-embed)` 前完成 `EnsureWithFetch`、`EnsureBuildEnv`、`Verify`、`FixLibpythonInstallName`，保证可解析、可链接、可运行且不侵入系统。
 
-**3.链接注入**：主入口注入 __llgo_py_init_from_exedir 调用并生成桥接 .o，统一追加 rpath（含独立 Python 与 @executable_path/...），再交由链接器合成可执行文件。
+**3.链接注入**：主入口注入 `__llgo_py_init_from_exedir` 调用并生成桥接 `.o`，统一追加 `rpath`（含独立 Python 与 `@executable_path/...`），再交由链接器合成可执行文件。
 
-**4.可选打包**：BundleOnedir（目录式）与 BuildOnefileBinary（单文件）让应用“拿来就跑”，无需用户安装/配置 Python。
+**4.可选打包**：`BundleOnedir`（目录式）与 `BuildOnefileBinary`（单文件）让应用“拿来就跑”，无需用户安装/配置 Python。
 
-**5.本质差异**：C/C++ 无需“启动运行时”；Python 需在启动早期设置 PYTHONHOME 并初始化解释器。
+**5.本质差异**：C/C++ 无需“启动运行时”；Python 需在启动早期设置 `PYTHONHOME` 并初始化解释器。
 
 **6.结果与价值**：实现“可编译、可链接、可运行、可分发、可复现”，以最小侵入把 Python 能力工程化纳入 Go 应用交付链路。
