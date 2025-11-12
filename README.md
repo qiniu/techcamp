@@ -45,6 +45,12 @@
 | 13   | 从类型系统理解 LLGo 编译器的实现 | [📖 阅读](2025/13.从类型系统理解%20LLGo%20编译器的实现/typesystem_llgo.md) |
 | 14   | Code Review 不是什么——盘点5个常见误区 | [📖 阅读](2025/14.%20Code%20Review%20不是什么/what-code-review-is-not.md) |
 | 15   | 架构设计从何入手？ | [📖 阅读](2025/15.%20架构设计从何入手/content.md) |
+| 16   | 关于架构设计的几点认知体会 | [📖 阅读](2025/16.%20关于架构设计的几点认知体会/content.md) |
+| 17   | SPX-Algorithm：构建多模态搜索服务的一些心得 | [📖 阅读](2025/17.%20SPX-Algorithm：构建多模态搜索服务的一些心得/share.md) |
+| 18   | 代码不是核心：从 XLink 项目看产品开发的决策层次 | [📖 阅读](2025/18.%20代码不是核心：从%20XLink%20项目看产品开发的决策层次/content.md) |
+| 19   | llpyg: LLGo 快速集成 Python 生态的桥梁 | [📖 阅读](2025/19.%20llpyg:%20LLGo%20快速集成%20Python%20生态的桥梁/content.md) |
+| 20   | X绘图：我们如何让 AI 更好地融入产品 | [📖 阅读](2025/20.%20X绘图-我们是如何让AI更好的融入我们的产品的/实训感悟.md) |
+| 21   | LLGo 中 Python 编译与运行时集成：从依赖识别到一键交付 | [📖 阅读](2025/21.%20LLGo%20中%20Python%20编译与运行时集成/content.md) |
 
 ### 🎓 第 4 期训练营
 
@@ -56,12 +62,14 @@
 | 第 3 组 | LLGo 对 Python 库开箱即用               | [📖 阅读](4th/3rd_llgo_python/topic.md)       |
 | 第 4 组 | AI Powered Ops                          | [📖 阅读](4th/4th_ai_powered_ops/topic.md)    |
 
+
 #### 实训公开课
 | 期数    | 主题                                    | 内容                     |
 | ------- | --------------------------------------- | ---------------------------------- |
 | 第 1 期 | 《人人都是产品经理》作者苏杰：AI 教我的产品哲学 | [📖 观看](https://mp.weixin.qq.com/s/qGQBKs3bjDZzk-SKdNumBw) |
 | 第 2 期 | 汪源 × 许式伟：AI时代如何打造真正解决用户痛点的产品？ | [📖 观看](https://mp.weixin.qq.com/s/eppy6z7XNN-mVZIjk44yvg) |
 | 第 3 期 | 《构建之法》作者邹欣：实战中的软件工程——从微软到 AI 时代的构建之道 | [📖 观看](https://mp.weixin.qq.com/s/CkKXGLzycyE7inMFp6jKlw) |
+| 第 4 期 | 毕玄 x 许式伟：AI时代架构演进的底层逻辑与未来挑战 | [📖 观看](https://mp.weixin.qq.com/s/ON0dmxCtD0CjBo6ZEewK4Q) |
 
 
 ### 📋 实训营规范
