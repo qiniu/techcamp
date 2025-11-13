@@ -1,0 +1,29 @@
+announcement:
+  label: 公告
+  permalink: /announcement
+  description: 实训营公告与通知
+
+ai:
+  label: AI
+  permalink: /ai
+  description: AI 相关技术文章
+
+go:
+  label: Go
+  permalink: /go
+  description: Go 语言相关
+
+compiler:
+  label: 编译器
+  permalink: /compiler
+  description: 编译器技术
+
+engineering:
+  label: 工程实践
+  permalink: /engineering
+  description: 工程实践与最佳实践
+
+architecture:
+  label: 架构设计
+  permalink: /architecture
+  description: 架构设计与系统设计
