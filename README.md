@@ -1,15 +1,15 @@
-<p align="center">
-  <h1 align="center">XEngineer</h1>
-  <p align="center">
+<div align="center">
+  <h1>XEngineer</h1>
+  <p>
     <strong>Be the Builder. Be an XEngineer.</strong><br/>
     <em>AI 能写代码了，工程师的核心能力不再是「写」，而是「判断」。</em>
   </p>
-  <p align="center">
+  <p>
     <img src="https://img.shields.io/badge/Initiated%20by-Qiniu%20Cloud-4A90D9?style=flat-square" alt="Qiniu Cloud"/>
-    <img src="https://img.shields.io/badge/Founded%20by-许式伟-orange?style=flat-square" alt="Founder"/>
+    <img src="https://img.shields.io/badge/Founded%20by-%E8%AE%B8%E5%BC%8F%E4%BC%9F-orange?style=flat-square" alt="Founder"/>
     <img src="https://img.shields.io/badge/Season-6th%20Cohort%20Launched-brightgreen?style=flat-square" alt="Season 6"/>
   </p>
-</p>
+</div>
 
 ---
 
